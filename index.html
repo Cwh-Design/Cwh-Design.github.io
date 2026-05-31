@@ -5,6 +5,10 @@
 <title>陈汶浩(7年+经验)-作品集</title>
 
 <style>
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
     background:#000000;
@@ -18,7 +22,7 @@ video{
     display:block;
     margin:0 auto;
     box-shadow:0 8px 40px rgba(0,0,0,.08);
-    border-radius:0px;
+    border-radius:0;
 }
 
 img + img{
@@ -28,47 +32,54 @@ img + img{
 video{
     background:#000;
 }
-</style>
 
+.side-nav{
+    position:fixed;
+    right:25px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.nav-item{
+    width:76px;
+    height:76px;
+    display:block;
+}
+
+.nav-item img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    margin:0;
+    box-shadow:none;
+}
+</style>
 </head>
 
-<body>
+<body id="top">
 
-<img src="images/001.jpg" loading="eager">
+<img id="intro" src="images/001.jpg" loading="eager">
 <img src="images/002.jpg" loading="lazy">
 <img src="images/003.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
+<video autoplay muted loop playsinline preload="auto">
     <source src="videos/001.webm" type="video/webm">
 </video>
 
 <img src="images/004.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
+<video autoplay muted loop playsinline preload="auto">
     <source src="videos/002.webm" type="video/webm">
 </video>
 
 <img src="images/005.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
+<video autoplay muted loop playsinline preload="auto">
     <source src="videos/003.webm" type="video/webm">
 </video>
 
@@ -78,29 +89,17 @@ video{
 <img src="images/009.jpg" loading="lazy">
 <img src="images/010.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
+<video autoplay muted loop playsinline preload="auto">
     <source src="videos/004.webm" type="video/webm">
 </video>
 
 <img src="images/011.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
+<video autoplay muted loop playsinline preload="auto">
     <source src="videos/005.webm" type="video/webm">
 </video>
 
-<img src="images/012.jpg" loading="lazy">
+<img id="visual" src="images/012.jpg" loading="lazy">
 <img src="images/013.jpg" loading="lazy">
 <img src="images/014.jpg" loading="lazy">
 <img src="images/015.jpg" loading="lazy">
@@ -112,7 +111,8 @@ video{
 <img src="images/021.jpg" loading="lazy">
 <img src="images/022.jpg" loading="lazy">
 <img src="images/023.jpg" loading="lazy">
-<img src="images/024.jpg" loading="lazy">
+
+<img id="c" src="images/024.jpg" loading="lazy">
 <img src="images/025.jpg" loading="lazy">
 <img src="images/026.jpg" loading="lazy">
 <img src="images/027.jpg" loading="lazy">
@@ -124,7 +124,8 @@ video{
 <img src="images/033.jpg" loading="lazy">
 <img src="images/034.jpg" loading="lazy">
 <img src="images/035.jpg" loading="lazy">
-<img src="images/036.jpg" loading="lazy">
+
+<img id="b" src="images/036.jpg" loading="lazy">
 <img src="images/037.jpg" loading="lazy">
 <img src="images/038.jpg" loading="lazy">
 <img src="images/039.jpg" loading="lazy">
@@ -133,14 +134,27 @@ video{
 <img src="images/042.jpg" loading="lazy">
 <img src="images/043.jpg" loading="lazy">
 
-<video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
->
-    <source src="videos/xxx.webm" type="video/webm">
-</video>
+<div class="side-nav">
+    <a href="#intro" class="nav-item">
+        <img src="assets/intro.png" alt="">
+    </a>
+
+    <a href="#visual" class="nav-item">
+        <img src="assets/visual.png" alt="">
+    </a>
+
+    <a href="#c" class="nav-item">
+        <img src="assets/c.png" alt="">
+    </a>
+
+    <a href="#b" class="nav-item">
+        <img src="assets/b.png" alt="">
+    </a>
+
+    <a href="#top" class="nav-item">
+        <img src="assets/top.png" alt="">
+    </a>
+</div>
+
 </body>
 </html>
