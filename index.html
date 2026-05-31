@@ -149,10 +149,10 @@ video{
 <div class="side-nav">
 
     <a href="#intro" class="nav-item" data-target="intro">
-        <img src="assets/intro.png" alt="">
+        <img src="assets/top.png" alt="">
     </a>
 
-    <a href="#b" class="nav-item" data-target="b">
+    <a href="#visual" class="nav-item" data-target="visual">
         <img src="assets/b.png" alt="">
     </a>
 
@@ -160,17 +160,76 @@ video{
         <img src="assets/c.png" alt="">
     </a>
 
-    <a href="#visual" class="nav-item" data-target="visual">
+    <a href="#b" class="nav-item" data-target="b">
         <img src="assets/visual.png" alt="">
     </a>
 
     <a href="#top" class="nav-item" data-target="top">
-        <img src="assets/top.png" alt="">
+        <img src="assets/intro.png" alt="">
     </a>
 
 </div>
 
 <script>
+
+const navConfig = {
+    intro:{ normal:"assets/top.png", active:"assets/top-active.png" },
+    visual:{ normal:"assets/b.png", active:"assets/b-active.png" },
+    c:{ normal:"assets/c.png", active:"assets/c-active.png" },
+    b:{ normal:"assets/visual.png", active:"assets/visual-active.png" },
+    top:{ normal:"assets/intro.png", active:"assets/intro-active.png" }
+};
+
+const navItems = document.querySelectorAll(".nav-item");
+
+function setActive(id){
+    navItems.forEach(item=>{
+        const target = item.dataset.target;
+        const img = item.querySelector("img");
+
+        if(target === id){
+            img.src = navConfig[target].active;
+        }else{
+            img.src = navConfig[target].normal;
+        }
+    });
+}
+
+function updateByScroll(){
+    const scrollY = window.scrollY + 300;
+
+    if(scrollY < 200){
+        setActive("intro");
+    }
+    else if(scrollY >= document.getElementById("b").offsetTop){
+        setActive("b");
+    }
+    else if(scrollY >= document.getElementById("c").offsetTop){
+        setActive("c");
+    }
+    else if(scrollY >= document.getElementById("visual").offsetTop){
+        setActive("visual");
+    }
+    else{
+        setActive("intro");
+    }
+}
+
+navItems.forEach(item=>{
+    item.addEventListener("mouseenter",()=>{
+        const target = item.dataset.target;
+        item.querySelector("img").src = navConfig[target].active;
+    });
+
+    item.addEventListener("mouseleave",()=>{
+        updateByScroll();
+    });
+});
+
+window.addEventListener("scroll",updateByScroll);
+updateByScroll();
+
+</script>
 
 const navConfig = {
     intro:{ normal:"assets/intro.png", active:"assets/intro-active.png" },
