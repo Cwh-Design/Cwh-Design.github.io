@@ -44,7 +44,7 @@ video{
 
 .side-nav{
     position:fixed;
-    right:25px;
+    right:35px;
     top:50%;
     transform:translateY(-50%);
     z-index:9999;
@@ -209,7 +209,7 @@ function setActive(id){
         if(target === id){
             img.src = navConfig[target].active;
             img.style.filter =
-                "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
+                "drop-shadow(0 5px 30px rgba(54,138,255,.75))";
         }else{
             img.src = navConfig[target].normal;
             img.style.filter = "none";
