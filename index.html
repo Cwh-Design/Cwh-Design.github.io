@@ -44,7 +44,7 @@ video{
 
 .side-nav{
     position:fixed;
-    right:25px;
+    right:30px;
     top:50%;
     transform:translateY(-50%);
     z-index:9999;
@@ -60,6 +60,17 @@ video{
     display:block;
 }
 
+.nav-item{
+    width:72px;
+    height:72px;
+    display:block;
+    transition:transform .25s ease, opacity .25s ease;
+}
+
+.nav-item:hover{
+    transform:scale(1.06);
+}
+
 .nav-item img{
     width:100%;
     height:100%;
@@ -68,6 +79,8 @@ video{
 
     margin:0;
     box-shadow:none;
+
+    transition:opacity .35s ease, transform .35s ease;
 }
 
 </style>
@@ -189,8 +202,10 @@ function setActive(id){
 
         if(target === id){
             img.src = navConfig[target].active;
+            img.style.filter = "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
         }else{
             img.src = navConfig[target].normal;
+            img.style.filter = "none";
         }
     });
 }
@@ -216,10 +231,15 @@ function updateByScroll(){
 }
 
 navItems.forEach(item=>{
-    item.addEventListener("mouseenter",()=>{
-        const target = item.dataset.target;
-        item.querySelector("img").src = navConfig[target].active;
-    });
+   item.addEventListener("mouseenter",()=>{
+    const target = item.dataset.target;
+    const img = item.querySelector("img");
+
+    img.src = navConfig[target].active;
+
+    img.style.filter =
+        "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
+});
 
     item.addEventListener("mouseleave",()=>{
         updateByScroll();
@@ -230,75 +250,5 @@ window.addEventListener("scroll",updateByScroll);
 updateByScroll();
 
 </script>
-
-const navConfig = {
-    intro:{ normal:"assets/intro.png", active:"assets/intro-active.png" },
-    visual:{ normal:"assets/visual.png", active:"assets/visual-active.png" },
-    c:{ normal:"assets/c.png", active:"assets/c-active.png" },
-    b:{ normal:"assets/b.png", active:"assets/b-active.png" },
-    top:{ normal:"assets/top.png", active:"assets/top-active.png" }
-};
-
-const navItems = document.querySelectorAll(".nav-item");
-
-function setActive(id){
-    navItems.forEach(item=>{
-        const target = item.dataset.target;
-        const img = item.querySelector("img");
-
-        if(target === id){
-            img.src = navConfig[target].active;
-        }else{
-            img.src = navConfig[target].normal;
-        }
-    });
-}
-
-function updateByScroll(){
-
-    const scrollY = window.scrollY + 300;
-
-    if(scrollY < 200){
-        setActive("intro");
-    }
-    else if(scrollY >= document.getElementById("b").offsetTop){
-        setActive("b");
-    }
-    else if(scrollY >= document.getElementById("c").offsetTop){
-        setActive("c");
-    }
-    else if(scrollY >= document.getElementById("visual").offsetTop){
-        setActive("visual");
-    }
-    else{
-        setActive("intro");
-    }
-}
-
-navItems.forEach(item=>{
-
-    item.addEventListener("mouseenter",()=>{
-
-        const target = item.dataset.target;
-
-        item.querySelector("img").src =
-            navConfig[target].active;
-
-    });
-
-    item.addEventListener("mouseleave",()=>{
-
-        updateByScroll();
-
-    });
-
-});
-
-window.addEventListener("scroll",updateByScroll);
-
-updateByScroll();
-
-</script>
-
 </body>
 </html>
