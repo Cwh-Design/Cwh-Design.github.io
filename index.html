@@ -44,7 +44,7 @@ video{
 
 .side-nav{
     position:fixed;
-    right:35px;
+    right:25px;
     top:50%;
     transform:translateY(-50%);
     z-index:9999;
@@ -82,9 +82,9 @@ video{
 
 <body id="top">
 
-<img id="intro" src="images/001.jpg" loading="eager">
-<img src="images/002.jpg" loading="lazy">
-<img src="images/003.jpg" loading="lazy">
+<img src="images/001.jpg" loading="eager">
+<img id="intro" src="images/002.jpg" loading="lazy">
+<img id="visual" src="images/003.jpg" loading="lazy">
 
 <video autoplay muted loop playsinline preload="auto">
     <source src="videos/001.webm" type="video/webm">
@@ -118,8 +118,8 @@ video{
     <source src="videos/005.webm" type="video/webm">
 </video>
 
-<img id="visual" src="images/012.jpg" loading="lazy">
-<img src="images/013.jpg" loading="lazy">
+<img src="images/012.jpg" loading="lazy">
+<img id="c" src="images/013.jpg" loading="lazy">
 <img src="images/014.jpg" loading="lazy">
 <img src="images/015.jpg" loading="lazy">
 <img src="images/016.jpg" loading="lazy">
@@ -130,11 +130,10 @@ video{
 <img src="images/021.jpg" loading="lazy">
 <img src="images/022.jpg" loading="lazy">
 <img src="images/023.jpg" loading="lazy">
-
-<img id="c" src="images/024.jpg" loading="lazy">
+<img src="images/024.jpg" loading="lazy">
 <img src="images/025.jpg" loading="lazy">
 <img src="images/026.jpg" loading="lazy">
-<img src="images/027.jpg" loading="lazy">
+<img id="b" src="images/027.jpg" loading="lazy">
 <img src="images/028.jpg" loading="lazy">
 <img src="images/029.jpg" loading="lazy">
 <img src="images/030.jpg" loading="lazy">
@@ -144,7 +143,7 @@ video{
 <img src="images/034.jpg" loading="lazy">
 <img src="images/035.jpg" loading="lazy">
 
-<img id="b" src="images/036.jpg" loading="lazy">
+<img src="images/036.jpg" loading="lazy">
 <img src="images/037.jpg" loading="lazy">
 <img src="images/038.jpg" loading="lazy">
 <img src="images/039.jpg" loading="lazy">
@@ -209,7 +208,7 @@ function setActive(id){
         if(target === id){
             img.src = navConfig[target].active;
             img.style.filter =
-                "drop-shadow(0 5px 30px rgba(54,138,255,.75))";
+                "drop-shadow(0 5px 20px rgba(54,138,255,.85))";
         }else{
             img.src = navConfig[target].normal;
             img.style.filter = "none";
