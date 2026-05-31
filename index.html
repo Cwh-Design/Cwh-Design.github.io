@@ -44,7 +44,7 @@ video{
 
 .side-nav{
     position:fixed;
-    right:30px;
+    right:25px;
     top:50%;
     transform:translateY(-50%);
     z-index:9999;
@@ -52,12 +52,6 @@ video{
     display:flex;
     flex-direction:column;
     gap:2px;
-}
-
-.nav-item{
-    width:72px;
-    height:72px;
-    display:block;
 }
 
 .nav-item{
@@ -195,6 +189,18 @@ const navConfig = {
 
 const navItems = document.querySelectorAll(".nav-item");
 
+let lockedActive = null;
+
+function clearActive(){
+    navItems.forEach(item=>{
+        const target = item.dataset.target;
+        const img = item.querySelector("img");
+
+        img.src = navConfig[target].normal;
+        img.style.filter = "none";
+    });
+}
+
 function setActive(id){
     navItems.forEach(item=>{
         const target = item.dataset.target;
@@ -202,7 +208,8 @@ function setActive(id){
 
         if(target === id){
             img.src = navConfig[target].active;
-            img.style.filter = "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
+            img.style.filter =
+                "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
         }else{
             img.src = navConfig[target].normal;
             img.style.filter = "none";
@@ -210,44 +217,30 @@ function setActive(id){
     });
 }
 
-function updateByScroll(){
-    const scrollY = window.scrollY + 300;
-
-    if(scrollY < 200){
-        setActive("intro");
-    }
-    else if(scrollY >= document.getElementById("b").offsetTop){
-        setActive("b");
-    }
-    else if(scrollY >= document.getElementById("c").offsetTop){
-        setActive("c");
-    }
-    else if(scrollY >= document.getElementById("visual").offsetTop){
-        setActive("visual");
-    }
-    else{
-        setActive("intro");
-    }
-}
-
 navItems.forEach(item=>{
-   item.addEventListener("mouseenter",()=>{
-    const target = item.dataset.target;
-    const img = item.querySelector("img");
 
-    img.src = navConfig[target].active;
-
-    img.style.filter =
-        "drop-shadow(0 5px 30px rgba(54,138,255,.25))";
-});
+    item.addEventListener("mouseenter",()=>{
+        const target = item.dataset.target;
+        setActive(target);
+    });
 
     item.addEventListener("mouseleave",()=>{
-        updateByScroll();
+        if(lockedActive){
+            setActive(lockedActive);
+        }else{
+            clearActive();
+        }
     });
+
+    item.addEventListener("click",()=>{
+        const target = item.dataset.target;
+        lockedActive = target;
+        setActive(target);
+    });
+
 });
 
-window.addEventListener("scroll",updateByScroll);
-updateByScroll();
+clearActive();
 
 </script>
 </body>
