@@ -44,7 +44,7 @@ video{
 
 .side-nav{
     position:fixed;
-    right:40px;
+    right:25px;
     top:50%;
     transform:translateY(-50%);
     z-index:9999;
@@ -55,8 +55,8 @@ video{
 }
 
 .nav-item{
-    width:76px;
-    height:76px;
+    width:72px;
+    height:72px;
     display:block;
     transition:transform .25s ease, opacity .25s ease;
 }
@@ -188,6 +188,14 @@ const navConfig = {
 
 const navItems = document.querySelectorAll(".nav-item");
 
+Object.values(navConfig).forEach(item=>{
+    const normalImg = new Image();
+    normalImg.src = item.normal;
+
+    const activeImg = new Image();
+    activeImg.src = item.active;
+});
+
 let lockedActive = null;
 
 function clearActive(){
@@ -208,7 +216,7 @@ function setActive(id){
         if(target === id){
             img.src = navConfig[target].active;
             img.style.filter =
-                "drop-shadow(0 5px 20px rgba(54,138,255,.85))";
+                "drop-shadow(0 5px 30px rgba(54,138,255,.75))";
         }else{
             img.src = navConfig[target].normal;
             img.style.filter = "none";
